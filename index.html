@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batik Coloring</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Batik Coloring</h1>
+    <div class="controls">
+      <label class="pattern-picker">
+        <span>Pattern</span>
+        <select id="pattern"></select>
+      </label>
+      <div class="seg" role="group" aria-label="Mode">
+        <button type="button" class="mode-btn active" data-mode="basic">Basic</button>
+        <button type="button" class="mode-btn" data-mode="free">Free coloring</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p id="hint" class="hint" aria-live="polite"></p>
+
+    <div class="stage">
+      <canvas id="view" aria-label="Batik pattern to colour"></canvas>
+    </div>
+
+    <div class="toolbar">
+      <!-- Basic mode: uncover the original colours -->
+      <div id="basic-tools" class="group" hidden>
+        <button type="button" class="tool-btn active" data-tool="brush">Brush</button>
+        <button type="button" class="tool-btn" data-tool="fill">Fill section</button>
+        <button type="button" id="reveal-all">Show all colours</button>
+      </div>
+
+      <!-- Free coloring: pick colours yourself -->
+      <div id="free-tools" class="group" hidden>
+        <button type="button" class="tool-btn active" data-tool="fill">Fill</button>
+        <button type="button" class="tool-btn" data-tool="brush">Brush</button>
+        <button type="button" class="tool-btn" data-tool="eraser">Eraser</button>
+        <div id="swatches" class="swatches" role="group" aria-label="Colours"></div>
+        <label class="custom-color">
+          <span>Custom</span>
+          <input type="color" id="custom-color" value="#b5562a">
+        </label>
+      </div>
+
+      <div class="group">
+        <label class="size">
+          <span>Size</span>
+          <input type="range" id="size" min="4" max="120" value="28">
+          <output id="size-value">28</output>
+        </label>
+        <span class="spacer"></span>
+        <button type="button" id="undo" disabled>Undo</button>
+        <button type="button" id="clear">Clear</button>
+        <button type="button" id="download" class="primary">Download PNG</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="patterns/parang.js"></script>
+  <!-- Add new patterns here, e.g. <script src="patterns/kawung.js"></script> -->
+  <script src="app.js"></script>
+</body>
+</html>
